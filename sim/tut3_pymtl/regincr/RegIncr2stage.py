@@ -16,8 +16,8 @@ class RegIncr2stage( Model ):
 
     # Port-based interface
 
-    s.in_ = InPort  (8)
-    s.out = OutPort (8)
+    s.in_ = InPort  (Bits(8))
+    s.out = OutPort (Bits(8))
 
     # First stage
 
@@ -26,12 +26,20 @@ class RegIncr2stage( Model ):
     s.connect( s.in_, s.reg_incr_0.in_ )
 
     # ''' TUTORIAL TASK ''''''''''''''''''''''''''''''''''''''''''''''''''
-    # This model is incomplete. As part of the tutorial you will insert
-    # code here to instantiate and then connect the second stage of this
-    # two-stage registered incrementer.
+    # This model is incomplete. As part of the tutorial you will add code
+    # to connect the second stage of this two-stage registered
+    # incrementer.
     # ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  # Line tracing
+    # Second stage
+
+    s.reg_incr_1 = RegIncr()
+
+    s.connect( s.reg_incr_0.out, s.reg_incr_1.in_ )
+    s.connect( s.reg_incr_1.out, s.out )
+
+
+  # Line Tracing
 
   def line_trace( s ):
     return "{} ({}|{}) {}".format(

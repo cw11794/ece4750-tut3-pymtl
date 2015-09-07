@@ -34,9 +34,21 @@ def test_large( dump_vcd ):
     [ 0x00, 0xc7 ],
   ], dump_vcd )
 
-# ''' TUTORIAL TASK ''''''''''''''''''''''''''''''''''''''''''''''''''''''
+# ''' TUTORIAL TASK '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 # This test script is incomplete. As part of the tutorial you will add
 # another test case to test for overflow. Later you will add a test case
 # for random testing.
-# ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+#-------------------------------------------------------------------------
+# test_overflow
+#-------------------------------------------------------------------------
+
+def test_overflow( dump_vcd ):
+  run_test_vector_sim( RegIncr(), [
+    ('in_ out*'),
+    [ 0x00, '?' ],
+    [ 0xfe, 0x01 ],
+    [ 0xff, 0xff ],
+    [ 0x00, 0x00 ],
+  ], dump_vcd )
